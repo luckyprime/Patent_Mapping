@@ -3,7 +3,7 @@ PDF Patent Mapper
 
 This app batches PDF, DOCX, TXT, and MD documents, extracts text, optionally OCRs image-heavy PDF pages, and creates one mapping report per document using the same patent mapping format every time.
 
-What changed
+Features
 ------------
 - Upload up to 300 documents in one run.
 - Use upload mode, source-folder mode, or both in one run.
