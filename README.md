@@ -1,3 +1,22 @@
+# How to Use
+To run the updated app at http://localhost:8501/, the simplest path is to use Docker again.
+Docker run
+•	Open Ubuntu/WSL terminal
+
+Go to the project folder:  cd /mnt/c/Patent_Mapping/
+
+Rebuild the image:   sudo docker build -t Patent_Mapping .
+
+
+Run the container: sudo docker run --rm -p 8501:8501 --env-file .env --name rag-app pdf-rag-agent
+
+
+Then open the url:
+
+http://localhost:8501/
+
+
+
 # Patent_Mapping
 Patent Mapping Script
 PDF Patent Mapper
