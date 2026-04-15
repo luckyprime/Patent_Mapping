@@ -1,2 +1,71 @@
 # Patent_Mapping
 Patent Mapping Script
+PDF Patent Mapper
+=================
+
+This app batches PDF, DOCX, TXT, and MD documents, extracts text, optionally OCRs image-heavy PDF pages, and creates one mapping report per document using the same patent mapping format every time.
+
+What changed
+------------
+- Upload up to 300 documents in one run.
+- Use upload mode, source-folder mode, or both in one run.
+- Create source/results folder structure directly from the UI.
+- Upload a separate key features file or paste the features into the app.
+- Keep the output format stable for each document.
+- Choose output format per run: TXT, DOCX, or PDF.
+- Create exactly one output file per analyzed document.
+- Refresh local Ollama models automatically from your server.
+- Add Clear Results and Reset App controls.
+- Fall back to a deterministic report if the selected LLM is unavailable.
+
+Supported files
+---------------
+- PDF
+- DOCX
+- TXT
+- MD
+
+Free model options
+------------------
+- Ollama local models refreshed from your running Ollama server.
+- Groq free API key.
+- Google Gemini free API key.
+
+Recommended free local models for better mapping quality:
+- `qwen2.5:14b` or `qwen2.5:32b`
+- `llama3.1:70b` (if hardware allows)
+- `deepseek-r1:14b`
+
+For offline model updates
+-------------------------
+Pull new local models with:
+
+```bash
+ollama pull qwen2.5:14b
+ollama pull qwen2.5:32b
+ollama pull llama3.1:70b
+ollama pull deepseek-r1:14b
+```
+
+Docker build
+------------
+```bash
+docker build -t pdf-rag-agent .
+```
+
+Run container
+-------------
+```bash
+docker run -p 8501:8501 --env-file .env --name rag-app pdf-rag-agent
+```
+
+Files created after a batch run
+-------------------------------
+- One mapping file per input document in the selected output format.
+
+Notes
+-----
+- The output instructions default to the mapping format from your sample file.
+- OCR is optional. If it is off, the app still lists documents with image-heavy pages.
+- The build context excludes the local `venv` so Docker builds stay fast.
+- In Docker, host folders must be mounted; otherwise paths are inside the container filesystem.
